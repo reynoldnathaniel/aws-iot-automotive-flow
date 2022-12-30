@@ -8,7 +8,9 @@
 ## Description
 This project uses [IoT Device Simulator - Automotive Demo](https://docs.aws.amazon.com/solutions/latest/iot-device-simulator/welcome.html) to simulate IoT automotive data and sending to AWS for data analytics and machine learning purposes.
 
+
 ## Getting Started
+Please deploy the IoT Device Simulator and follow the guidelines for the [Automotive demo](https://docs.aws.amazon.com/solutions/latest/iot-device-simulator/automotive-demo.html) page to make use of the automotive data.
 
 The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
