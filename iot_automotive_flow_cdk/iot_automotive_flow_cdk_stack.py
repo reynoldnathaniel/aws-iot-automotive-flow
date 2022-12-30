@@ -2,12 +2,16 @@ from constructs import Construct
 from aws_cdk import (
     Stack,
     aws_kinesis as kinesis,
-    aws_lambda as _lambda
+    aws_lambda as _lambda,
+    Duration
 )
 
 import aws_cdk.aws_iot_alpha as iot
 import aws_cdk.aws_iot_actions_alpha as actions
 import aws_cdk.aws_lambda_event_sources as LambdaEventSources
+
+memory_size = 256
+lambda_timeout = Duration.seconds(10)
 
 class IotAutomotiveFlowCdkStack(Stack):
 
@@ -28,17 +32,21 @@ class IotAutomotiveFlowCdkStack(Stack):
         )
         
         # Lambda function 
-        iot_kinesis_lambda = _lambda.Function(
+        iot_kinesis_lambda_sample = _lambda.Function(
             self, 
-            id='IotKinesisLambdaCdk',
+            id='IotKinesisLambdaSample',
             runtime=_lambda.Runtime.PYTHON_3_9,
-            code=_lambda.Code.from_asset('src'),
+            code=_lambda.Code.from_asset('src/sample'),
             handler='lambda_function.handler',
-            architecture= _lambda.Architecture.ARM_64
+            architecture= _lambda.Architecture.ARM_64,
+            timeout = lambda_timeout,
+            tracing = _lambda.Tracing.ACTIVE,
+            memory_size = memory_size
+
         )
 
         # Lambda Kinesis event source
-        iot_kinesis_lambda.add_event_source(LambdaEventSources.KinesisEventSource(stream,
+        iot_kinesis_lambda_sample.add_event_source(LambdaEventSources.KinesisEventSource(stream,
             batch_size=100, 
             starting_position=_lambda.StartingPosition.TRIM_HORIZON
         ))
