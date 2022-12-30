@@ -3,7 +3,7 @@
 
 ![AWS CDK](https://d2908q01vomqb2.cloudfront.net/7719a1c782a1ba91c031a682a0a2f8658209adbf/2021/01/15/cdk-logo6-1260x476.png)
 
-![Architecture](images/Automotive-IoT.png)
+![Iot Device Simulator Architecture](images/Automotive-IoT.png)
 
 ## Description
 This project uses [IoT Device Simulator - Automotive Demo](https://docs.aws.amazon.com/solutions/latest/iot-device-simulator/welcome.html) to simulate IoT automotive data and sending to AWS for data analytics and machine learning purposes.
