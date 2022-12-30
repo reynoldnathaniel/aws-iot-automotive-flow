@@ -12,7 +12,8 @@
       "**/__init__.py",
       "python/__pycache__",
       "tests",
-      "notes/*"
+      "notes*",
+      "images*"
     ]
   },
   "context": {
