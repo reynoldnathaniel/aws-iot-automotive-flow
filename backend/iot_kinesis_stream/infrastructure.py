@@ -10,10 +10,10 @@ import aws_cdk.aws_iot_alpha as iot
 import aws_cdk.aws_iot_actions_alpha as actions
 import aws_cdk.aws_lambda_event_sources as LambdaEventSources
 
-memory_size = 256
+memory_size = 128
 lambda_timeout = Duration.seconds(10)
 
-class IotAutomotiveFlowCdkStack(Stack):
+class IoTKinesisStream(Stack):
 
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
@@ -36,7 +36,7 @@ class IotAutomotiveFlowCdkStack(Stack):
             self, 
             id='IotKinesisLambdaSample',
             runtime=_lambda.Runtime.PYTHON_3_9,
-            code=_lambda.Code.from_asset('src/sample'),
+            code=_lambda.Code.from_asset('backend/iot_kinesis_stream/src'),
             handler='lambda_function.handler',
             architecture= _lambda.Architecture.ARM_64,
             timeout = lambda_timeout,
