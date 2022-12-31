@@ -1,6 +1,5 @@
-aws-cdk-lib==2.58.0
-constructs>=10.0.0,<11.0.0
+aws-cdk-lib
+constructs
 aws_cdk.aws_iot_alpha
 aws-cdk.aws_iot_actions_alpha
 aws_cdk.aws_dynamodb
-typing-extensions==4.3.0
