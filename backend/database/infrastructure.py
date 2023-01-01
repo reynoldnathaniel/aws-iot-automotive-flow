@@ -14,7 +14,7 @@ class DatabaseIoT(Stack):
         super().__init__(scope, construct_id, **kwargs)
 
         # Create a DynamoDB table for IoT Automotive
-        automotive_table = dynamodb.Table(self, "AutomotiveTable", table_name="AutomotiveTable",
+        self.automotive_table = dynamodb.Table(self, "AutomotiveTable", table_name="AutomotiveTable",
             partition_key = dynamodb.Attribute(name="timestamp", type=dynamodb.AttributeType.NUMBER),
             sort_key = dynamodb.Attribute(name="VIN", type=dynamodb.AttributeType.STRING),
             billing_mode = dynamodb.BillingMode.PAY_PER_REQUEST,

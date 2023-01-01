@@ -19,13 +19,13 @@ class IoTKinesisStream(Stack):
         super().__init__(scope, construct_id, **kwargs)
 
         # Kinesis Data Stream
-        stream = kinesis.Stream(self, "IotKinesisLambdaCdkStream")
+        self.stream = kinesis.Stream(self, "IotKinesisLambdaCdkStream")
 
         # IoT Rule with Kinesis Data Stream action
         topic_rule = iot.TopicRule(self, "IotKinesisLambdaCdkRule",
             sql=iot.IotSql.from_string_as_ver20160323("SELECT * FROM 'automotive-01'"),
             actions=[
-                actions.KinesisPutRecordAction(stream,
+                actions.KinesisPutRecordAction(self.stream,
                     partition_key="VIN"
                 )
             ]
@@ -46,7 +46,7 @@ class IoTKinesisStream(Stack):
         )
 
         # Lambda Kinesis event source
-        iot_kinesis_lambda_sample.add_event_source(LambdaEventSources.KinesisEventSource(stream,
+        iot_kinesis_lambda_sample.add_event_source(LambdaEventSources.KinesisEventSource(self.stream,
             batch_size=100, 
             starting_position=_lambda.StartingPosition.TRIM_HORIZON
         ))
